@@ -79,13 +79,18 @@ open class MarkdownTextStorage: HighlighterTextStorage {
         }
     }
     
-    private func attributesForTraits(_ traits: UIFontDescriptorSymbolicTraits, _ attributes: TextAttributes?) -> TextAttributes? {
+    private func attributesForTraits(_ traits: UIFontDescriptor.SymbolicTraits, _ attributes: TextAttributes?) -> TextAttributes? {
         var attributes = attributes
-        if let defaultFont = defaultAttributes[NSFontAttributeName] as? UIFont, attributes == nil {
+        if let defaultFont = defaultAttributes[convertFromNSAttributedStringKey(NSAttributedString.Key.font)] as? UIFont, attributes == nil {
             attributes = [
-                NSFontAttributeName: fontWithTraits(traits, font: defaultFont)
+                convertFromNSAttributedStringKey(NSAttributedString.Key.font): fontWithTraits(traits, font: defaultFont)
             ]
         }
         return attributes
     }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromNSAttributedStringKey(_ input: NSAttributedString.Key) -> String {
+	return input.rawValue
 }

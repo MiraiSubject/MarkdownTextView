@@ -18,7 +18,7 @@ open class HighlighterTextStorage: NSTextStorage {
     
     /// Default attributes to use for styling text.
     open var defaultAttributes: [String: AnyObject] = [
-        NSFontAttributeName: UIFont.preferredFont(forTextStyle: UIFontTextStyle.body)
+        convertFromNSAttributedStringKey(NSAttributedString.Key.font): UIFont.preferredFont(forTextStyle: UIFont.TextStyle.body)
     ] {
         didSet { editedAll(.editedAttributes) }
     }
@@ -40,12 +40,12 @@ open class HighlighterTextStorage: NSTextStorage {
     // MARK: Initialization
     
     public override init() {
-        backingStore = NSMutableAttributedString(string: "", attributes: defaultAttributes)
+        backingStore = NSMutableAttributedString(string: "", attributes: convertToOptionalNSAttributedStringKeyDictionary(defaultAttributes))
         super.init()
     }
 
     required public init?(coder aDecoder: NSCoder) {
-        backingStore = NSMutableAttributedString(string: "", attributes: defaultAttributes)
+        backingStore = NSMutableAttributedString(string: "", attributes: convertToOptionalNSAttributedStringKeyDictionary(defaultAttributes))
         super.init(coder: aDecoder)
     }
     
@@ -55,7 +55,7 @@ open class HighlighterTextStorage: NSTextStorage {
         return backingStore.string
     }
     
-    open override func attributes(at location: Int, effectiveRange range: NSRangePointer?) -> [String : Any] {
+    open override func attributes(at location: Int, effectiveRange range: NSRangePointer?) -> [NSAttributedString.Key : Any] {
         return backingStore.attributes(at: location, effectiveRange: range)
     }
     
@@ -64,8 +64,11 @@ open class HighlighterTextStorage: NSTextStorage {
         edited(.editedCharacters, range: range, changeInLength: attrString.length - range.length)
     }
     
-    open override func setAttributes(_ attrs: [String : Any]?, range: NSRange) {
-        backingStore.setAttributes(attrs, range: range)
+    open override func setAttributes(_ attrs: [NSAttributedString.Key : Any]?, range: NSRange) {
+// Local variable inserted by Swift 4.2 migrator.
+let attrs = convertFromOptionalNSAttributedStringKeyDictionary(attrs)
+
+        backingStore.setAttributes(convertToOptionalNSAttributedStringKeyDictionary(attrs), range: range)
         edited(.editedAttributes, range: range, changeInLength: 0)
     }
     
@@ -80,13 +83,13 @@ open class HighlighterTextStorage: NSTextStorage {
         super.processEditing()
     }
     
-    fileprivate func editedAll(_ actions: NSTextStorageEditActions) {
+    fileprivate func editedAll(_ actions: NSTextStorage.EditActions) {
         edited(actions, range: NSRange(location: 0, length: backingStore.length), changeInLength: 0)
     }
     
     fileprivate func highlightRange(_ range: NSRange) {
         backingStore.beginEditing()
-        setAttributes(defaultAttributes, range: range)
+        setAttributes(convertToOptionalNSAttributedStringKeyDictionary(defaultAttributes), range: range)
         let attrString = backingStore.attributedSubstring(from: range).mutableCopy() as! NSMutableAttributedString
         for highlighter in highlighters {
             highlighter.highlightAttributedString(attrString)
@@ -94,4 +97,26 @@ open class HighlighterTextStorage: NSTextStorage {
         replaceCharacters(in: range, with: attrString)
         backingStore.endEditing()
     }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromOptionalNSAttributedStringKeyDictionary(_ input: [NSAttributedString.Key: Any]?) -> [String: Any]? {
+	guard let input = input else { return nil }
+	return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromNSAttributedStringKey(_ input: NSAttributedString.Key) -> String {
+	return input.rawValue
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToOptionalNSAttributedStringKeyDictionary(_ input: [String: Any]?) -> [NSAttributedString.Key: Any]? {
+	guard let input = input else { return nil }
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (NSAttributedString.Key(rawValue: key), value)})
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromNSAttributedStringKeyDictionary(_ input: [NSAttributedString.Key: Any]) -> [String: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
 }

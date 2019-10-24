@@ -35,7 +35,12 @@ open class RegularExpressionHighlighter: HighlighterType {
     
     open func highlightAttributedString(_ attributedString: NSMutableAttributedString) {
         enumerateMatches(regularExpression, string: attributedString.string) {
-            attributedString.addAttributes(self.attributes, range: $0.range)
+            attributedString.addAttributes(convertToNSAttributedStringKeyDictionary(self.attributes), range: $0.range)
         }
     }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToNSAttributedStringKeyDictionary(_ input: [String: Any]) -> [NSAttributedString.Key: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (NSAttributedString.Key(rawValue: key), value)})
 }

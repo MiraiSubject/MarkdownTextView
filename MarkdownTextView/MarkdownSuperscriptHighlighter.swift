@@ -34,9 +34,9 @@ public final class MarkdownSuperscriptHighlighter: HighlighterType {
         var level: Int = 0
         
         enumerateMatches(type(of: self).SuperscriptRegex, string: attributedString.string) {
-            level += $0.rangeAt(1).length
+            level += $0.range(at: 1).length
             let textRange = $0.range
-            let attributes = attributedString.attributes(at: textRange.location, effectiveRange: nil) 
+            let attributes = convertFromNSAttributedStringKeyDictionary(attributedString.attributes(at: textRange.location, effectiveRange: nil)) 
             
             let isConsecutiveRange: Bool = {
                 if let previousRange = previousRange, NSMaxRange(previousRange) == textRange.location {
@@ -48,7 +48,7 @@ public final class MarkdownSuperscriptHighlighter: HighlighterType {
                 level += 1
             }
             
-            attributedString.addAttributes(superscriptAttributes(attributes as TextAttributes, level: level, ratio: self.fontSizeRatio), range: textRange)
+            attributedString.addAttributes(convertToNSAttributedStringKeyDictionary(superscriptAttributes(attributes as TextAttributes, level: level, ratio: self.fontSizeRatio)), range: textRange)
             previousRange = textRange
             
             if !isConsecutiveRange {
@@ -59,12 +59,27 @@ public final class MarkdownSuperscriptHighlighter: HighlighterType {
 }
 
 private func superscriptAttributes(_ attributes: TextAttributes, level: Int, ratio: CGFloat) -> TextAttributes {
-    if let font = attributes[NSFontAttributeName] as? UIFont {
+    if let font = attributes[convertFromNSAttributedStringKey(NSAttributedString.Key.font)] as? UIFont {
         let adjustedFont = UIFont(descriptor: font.fontDescriptor, size: font.pointSize * ratio)
         return [
             kCTSuperscriptAttributeName as String: level as AnyObject,
-            NSFontAttributeName: adjustedFont
+            convertFromNSAttributedStringKey(NSAttributedString.Key.font): adjustedFont
         ]
     }
     return [:]
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromNSAttributedStringKeyDictionary(_ input: [NSAttributedString.Key: Any]) -> [String: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToNSAttributedStringKeyDictionary(_ input: [String: Any]) -> [NSAttributedString.Key: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (NSAttributedString.Key(rawValue: key), value)})
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromNSAttributedStringKey(_ input: NSAttributedString.Key) -> String {
+	return input.rawValue
 }

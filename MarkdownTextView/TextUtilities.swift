@@ -10,8 +10,8 @@ import UIKit
 
 public typealias TextAttributes = [String: AnyObject]
 
-internal func fontWithTraits(_ traits: UIFontDescriptorSymbolicTraits, font: UIFont) -> UIFont {
-    let combinedTraits = UIFontDescriptorSymbolicTraits(rawValue: font.fontDescriptor.symbolicTraits.rawValue | (traits.rawValue & 0xFFFF))
+internal func fontWithTraits(_ traits: UIFontDescriptor.SymbolicTraits, font: UIFont) -> UIFont {
+    let combinedTraits = UIFontDescriptor.SymbolicTraits(rawValue: font.fontDescriptor.symbolicTraits.rawValue | (traits.rawValue & 0xFFFF))
     let descriptor = font.fontDescriptor.withSymbolicTraits(combinedTraits)
     return UIFont(descriptor: descriptor!, size: font.pointSize)
 }

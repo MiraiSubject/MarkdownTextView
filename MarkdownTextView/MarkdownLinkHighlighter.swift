@@ -20,11 +20,21 @@ public final class MarkdownLinkHighlighter: HighlighterType {
     public func highlightAttributedString(_ attributedString: NSMutableAttributedString) {
         let string = attributedString.string
         enumerateMatches(type(of: self).LinkRegex, string: string) {
-            let URLString = (string as NSString).substring(with: $0.rangeAt(2))
+            let URLString = (string as NSString).substring(with: $0.range(at: 2))
             let linkAttributes = [
-                NSLinkAttributeName: URLString
+                convertFromNSAttributedStringKey(NSAttributedString.Key.link): URLString
             ]
-            attributedString.addAttributes(linkAttributes, range: $0.range)
+            attributedString.addAttributes(convertToNSAttributedStringKeyDictionary(linkAttributes), range: $0.range)
         }
     }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromNSAttributedStringKey(_ input: NSAttributedString.Key) -> String {
+	return input.rawValue
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToNSAttributedStringKeyDictionary(_ input: [String: Any]) -> [NSAttributedString.Key: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (NSAttributedString.Key(rawValue: key), value)})
 }

@@ -14,7 +14,7 @@ import UIKit
 */
 public struct MarkdownAttributes {
     public var defaultAttributes: TextAttributes = [
-        NSFontAttributeName: UIFont.preferredFont(forTextStyle: UIFontTextStyle.body)
+        convertFromNSAttributedStringKey(NSAttributedString.Key.font): UIFont.preferredFont(forTextStyle: UIFont.TextStyle.body)
     ]
     
     public var strongAttributes: TextAttributes?
@@ -22,27 +22,27 @@ public struct MarkdownAttributes {
     
     public struct HeaderAttributes {
         public var h1Attributes: TextAttributes? = [
-            NSFontAttributeName: UIFont.preferredFont(forTextStyle: UIFontTextStyle.headline)
+            convertFromNSAttributedStringKey(NSAttributedString.Key.font): UIFont.preferredFont(forTextStyle: UIFont.TextStyle.headline)
         ]
         
         public var h2Attributes: TextAttributes? = [
-            NSFontAttributeName: UIFont.preferredFont(forTextStyle: UIFontTextStyle.headline)
+            convertFromNSAttributedStringKey(NSAttributedString.Key.font): UIFont.preferredFont(forTextStyle: UIFont.TextStyle.headline)
         ]
         
         public var h3Attributes: TextAttributes? = [
-            NSFontAttributeName: UIFont.preferredFont(forTextStyle: UIFontTextStyle.headline)
+            convertFromNSAttributedStringKey(NSAttributedString.Key.font): UIFont.preferredFont(forTextStyle: UIFont.TextStyle.headline)
         ]
         
         public var h4Attributes: TextAttributes? = [
-            NSFontAttributeName: UIFont.preferredFont(forTextStyle: UIFontTextStyle.subheadline)
+            convertFromNSAttributedStringKey(NSAttributedString.Key.font): UIFont.preferredFont(forTextStyle: UIFont.TextStyle.subheadline)
         ]
         
         public var h5Attributes: TextAttributes? = [
-            NSFontAttributeName: UIFont.preferredFont(forTextStyle: UIFontTextStyle.subheadline)
+            convertFromNSAttributedStringKey(NSAttributedString.Key.font): UIFont.preferredFont(forTextStyle: UIFont.TextStyle.subheadline)
         ]
         
         public var h6Attributes: TextAttributes? = [
-            NSFontAttributeName: UIFont.preferredFont(forTextStyle: UIFontTextStyle.subheadline)
+            convertFromNSAttributedStringKey(NSAttributedString.Key.font): UIFont.preferredFont(forTextStyle: UIFont.TextStyle.subheadline)
         ]
         
         func attributesForHeaderLevel(_ level: Int) -> TextAttributes? {
@@ -63,40 +63,45 @@ public struct MarkdownAttributes {
     public var headerAttributes: HeaderAttributes? = HeaderAttributes()
     
     fileprivate static let MonospaceFont: UIFont = {
-        let bodyFont = UIFont.preferredFont(forTextStyle: UIFontTextStyle.body)
+        let bodyFont = UIFont.preferredFont(forTextStyle: UIFont.TextStyle.body)
         let size = bodyFont.pointSize
         return UIFont(name: "Menlo", size: size) ?? UIFont(name: "Courier", size: size) ?? bodyFont
     }()
     
     public var codeBlockAttributes: TextAttributes? = [
-        NSFontAttributeName: MarkdownAttributes.MonospaceFont
+        convertFromNSAttributedStringKey(NSAttributedString.Key.font): MarkdownAttributes.MonospaceFont
     ]
     
     public var inlineCodeAttributes: TextAttributes? = [
-        NSFontAttributeName: MarkdownAttributes.MonospaceFont
+        convertFromNSAttributedStringKey(NSAttributedString.Key.font): MarkdownAttributes.MonospaceFont
     ]
     
     public var blockQuoteAttributes: TextAttributes? = [
-        NSForegroundColorAttributeName: UIColor.darkGray
+        convertFromNSAttributedStringKey(NSAttributedString.Key.foregroundColor): UIColor.darkGray
     ]
     
     public var orderedListAttributes: TextAttributes? = [
-        NSFontAttributeName: fontWithTraits(.traitBold, font: UIFont.preferredFont(forTextStyle: UIFontTextStyle.body))
+        convertFromNSAttributedStringKey(NSAttributedString.Key.font): fontWithTraits(.traitBold, font: UIFont.preferredFont(forTextStyle: UIFont.TextStyle.body))
     ]
     
     public var orderedListItemAttributes: TextAttributes? = [
-        NSFontAttributeName: UIFont.preferredFont(forTextStyle: UIFontTextStyle.body),
-        NSForegroundColorAttributeName: UIColor.darkGray
+        convertFromNSAttributedStringKey(NSAttributedString.Key.font): UIFont.preferredFont(forTextStyle: UIFont.TextStyle.body),
+        convertFromNSAttributedStringKey(NSAttributedString.Key.foregroundColor): UIColor.darkGray
     ]
     
     public var unorderedListAttributes: TextAttributes? = [
-        NSFontAttributeName: fontWithTraits(.traitBold, font: UIFont.preferredFont(forTextStyle: UIFontTextStyle.body))
+        convertFromNSAttributedStringKey(NSAttributedString.Key.font): fontWithTraits(.traitBold, font: UIFont.preferredFont(forTextStyle: UIFont.TextStyle.body))
     ]
     
     public var unorderedListItemAttributes: TextAttributes? = [
-        NSFontAttributeName: UIFont.preferredFont(forTextStyle: UIFontTextStyle.body),
-        NSForegroundColorAttributeName: UIColor.darkGray
+        convertFromNSAttributedStringKey(NSAttributedString.Key.font): UIFont.preferredFont(forTextStyle: UIFont.TextStyle.body),
+        convertFromNSAttributedStringKey(NSAttributedString.Key.foregroundColor): UIColor.darkGray
     ]
     
     public init() {}
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromNSAttributedStringKey(_ input: NSAttributedString.Key) -> String {
+	return input.rawValue
 }

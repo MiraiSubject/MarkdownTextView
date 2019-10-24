@@ -40,10 +40,10 @@ public final class MarkdownListHighlighter: HighlighterType {
         
         enumerateMatches(regularExpression, string: attributedString.string) {
             if let attributes = self.attributes {
-                attributedString.addAttributes(attributes, range: $0.range)
+                attributedString.addAttributes(convertToNSAttributedStringKeyDictionary(attributes), range: $0.range)
             }
             if let itemAttributes = self.itemAttributes {
-                attributedString.addAttributes(itemAttributes, range: $0.rangeAt(1))
+                attributedString.addAttributes(convertToNSAttributedStringKeyDictionary(itemAttributes), range: $0.range(at: 1))
             }
         }
     }
@@ -52,4 +52,9 @@ public final class MarkdownListHighlighter: HighlighterType {
 private func listItemRegexWithMarkerPattern(_ pattern: String) -> NSRegularExpression {
     // From markdown.pl v1.0.1 <http://daringfireball.net/projects/markdown/>
     return regexFromPattern("^(?:[ ]{0,3}(?:\(pattern))[ \t]+)(.+)\n")
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToNSAttributedStringKeyDictionary(_ input: [String: Any]) -> [NSAttributedString.Key: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (NSAttributedString.Key(rawValue: key), value)})
 }

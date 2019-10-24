@@ -24,10 +24,20 @@ public final class LinkHighlighter: HighlighterType {
         enumerateMatches(detector, string: attributedString.string) {
             if let URL = $0.url {
                 let linkAttributes = [
-                    NSLinkAttributeName: URL
+                    convertFromNSAttributedStringKey(NSAttributedString.Key.link): URL
                 ]
-                attributedString.addAttributes(linkAttributes, range: $0.range)
+                attributedString.addAttributes(convertToNSAttributedStringKeyDictionary(linkAttributes), range: $0.range)
             }
         }
     }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromNSAttributedStringKey(_ input: NSAttributedString.Key) -> String {
+	return input.rawValue
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToNSAttributedStringKeyDictionary(_ input: [String: Any]) -> [NSAttributedString.Key: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (NSAttributedString.Key(rawValue: key), value)})
 }
