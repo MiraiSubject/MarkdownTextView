@@ -26,13 +26,13 @@ class ViewController: UIViewController {
             textStorage.addHighlighter(MarkdownFencedCodeHighlighter(attributes: codeBlockAttributes))
         }
         
-        let textView = MarkdownTextView(frame: CGRectZero, textStorage: textStorage)
+        let textView = MarkdownTextView(frame: CGRect.zero, textStorage: textStorage)
         textView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(textView)
         
         let views = ["textView": textView]
-        var constraints = NSLayoutConstraint.constraintsWithVisualFormat("V:|-20-[textView]-20-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
-        constraints += NSLayoutConstraint.constraintsWithVisualFormat("H:|-20-[textView]-20-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
-        NSLayoutConstraint.activateConstraints(constraints)
+        var constraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|-20-[textView]-20-|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: nil, views: views)
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-20-[textView]-20-|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: nil, views: views)
+        NSLayoutConstraint.activate(constraints)
     }
 }
