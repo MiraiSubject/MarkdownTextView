@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		7252E0331AF1BC1D006D0535 /* MarkdownTextView.h in Headers */ = {isa = PBXBuildFile; fileRef = 7252E0321AF1BC1D006D0535 /* MarkdownTextView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7252E0391AF1BC1E006D0535 /* MarkdownTextView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7252E02D1AF1BC1D006D0535 /* MarkdownTextView.framework */; };
-		7252E0401AF1BC1E006D0535 /* MarkdownTextViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7252E03F1AF1BC1E006D0535 /* MarkdownTextViewTests.swift */; };
 		7252E0571AF1BCD0006D0535 /* HighlighterTextStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7252E0491AF1BCD0006D0535 /* HighlighterTextStorage.swift */; };
 		7252E0581AF1BCD0006D0535 /* HighlighterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7252E04A1AF1BCD0006D0535 /* HighlighterType.swift */; };
 		7252E0591AF1BCD0006D0535 /* LinkHighlighter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7252E04B1AF1BCD0006D0535 /* LinkHighlighter.swift */; };
@@ -34,13 +32,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		7252E03A1AF1BC1E006D0535 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7252E0241AF1BC1D006D0535 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 7252E02C1AF1BC1D006D0535;
-			remoteInfo = MarkdownTextView;
-		};
 		7252E08B1AF1BD82006D0535 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 7252E0241AF1BC1D006D0535 /* Project object */;
@@ -68,9 +59,6 @@
 		7252E02D1AF1BC1D006D0535 /* MarkdownTextView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MarkdownTextView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7252E0311AF1BC1D006D0535 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7252E0321AF1BC1D006D0535 /* MarkdownTextView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MarkdownTextView.h; sourceTree = "<group>"; };
-		7252E0381AF1BC1E006D0535 /* MarkdownTextViewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MarkdownTextViewTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		7252E03E1AF1BC1E006D0535 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7252E03F1AF1BC1E006D0535 /* MarkdownTextViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownTextViewTests.swift; sourceTree = "<group>"; };
 		7252E0491AF1BCD0006D0535 /* HighlighterTextStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighlighterTextStorage.swift; sourceTree = "<group>"; };
 		7252E04A1AF1BCD0006D0535 /* HighlighterType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighlighterType.swift; sourceTree = "<group>"; };
 		7252E04B1AF1BCD0006D0535 /* LinkHighlighter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkHighlighter.swift; sourceTree = "<group>"; };
@@ -102,14 +90,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		7252E0351AF1BC1E006D0535 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				7252E0391AF1BC1E006D0535 /* MarkdownTextView.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		7252E0661AF1BD61006D0535 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -125,7 +105,6 @@
 			isa = PBXGroup;
 			children = (
 				7252E02F1AF1BC1D006D0535 /* MarkdownTextView */,
-				7252E03C1AF1BC1E006D0535 /* MarkdownTextViewTests */,
 				7252E06A1AF1BD61006D0535 /* Example */,
 				7252E02E1AF1BC1D006D0535 /* Products */,
 			);
@@ -135,7 +114,6 @@
 			isa = PBXGroup;
 			children = (
 				7252E02D1AF1BC1D006D0535 /* MarkdownTextView.framework */,
-				7252E0381AF1BC1E006D0535 /* MarkdownTextViewTests.xctest */,
 				7252E0691AF1BD61006D0535 /* Example.app */,
 			);
 			name = Products;
@@ -168,23 +146,6 @@
 			isa = PBXGroup;
 			children = (
 				7252E0311AF1BC1D006D0535 /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		7252E03C1AF1BC1E006D0535 /* MarkdownTextViewTests */ = {
-			isa = PBXGroup;
-			children = (
-				7252E03F1AF1BC1E006D0535 /* MarkdownTextViewTests.swift */,
-				7252E03D1AF1BC1E006D0535 /* Supporting Files */,
-			);
-			path = MarkdownTextViewTests;
-			sourceTree = "<group>";
-		};
-		7252E03D1AF1BC1E006D0535 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				7252E03E1AF1BC1E006D0535 /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -242,24 +203,6 @@
 			productReference = 7252E02D1AF1BC1D006D0535 /* MarkdownTextView.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		7252E0371AF1BC1E006D0535 /* MarkdownTextViewTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 7252E0461AF1BC1E006D0535 /* Build configuration list for PBXNativeTarget "MarkdownTextViewTests" */;
-			buildPhases = (
-				7252E0341AF1BC1E006D0535 /* Sources */,
-				7252E0351AF1BC1E006D0535 /* Frameworks */,
-				7252E0361AF1BC1E006D0535 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				7252E03B1AF1BC1E006D0535 /* PBXTargetDependency */,
-			);
-			name = MarkdownTextViewTests;
-			productName = MarkdownTextViewTests;
-			productReference = 7252E0381AF1BC1E006D0535 /* MarkdownTextViewTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 		7252E0681AF1BD61006D0535 /* Example */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7252E0851AF1BD61006D0535 /* Build configuration list for PBXNativeTarget "Example" */;
@@ -286,16 +229,12 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 1010;
+				LastUpgradeCheck = 1110;
 				ORGANIZATIONNAME = "Indragie Karunaratne";
 				TargetAttributes = {
 					7252E02C1AF1BC1D006D0535 = {
 						CreatedOnToolsVersion = 6.3.1;
-						LastSwiftMigration = 1010;
-					};
-					7252E0371AF1BC1E006D0535 = {
-						CreatedOnToolsVersion = 6.3.1;
-						LastSwiftMigration = 1010;
+						LastSwiftMigration = 1110;
 					};
 					7252E0681AF1BD61006D0535 = {
 						CreatedOnToolsVersion = 6.3.1;
@@ -305,7 +244,7 @@
 			};
 			buildConfigurationList = 7252E0271AF1BC1D006D0535 /* Build configuration list for PBXProject "MarkdownTextView" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
@@ -317,7 +256,6 @@
 			projectRoot = "";
 			targets = (
 				7252E02C1AF1BC1D006D0535 /* MarkdownTextView */,
-				7252E0371AF1BC1E006D0535 /* MarkdownTextViewTests */,
 				7252E0681AF1BD61006D0535 /* Example */,
 			);
 		};
@@ -325,13 +263,6 @@
 
 /* Begin PBXResourcesBuildPhase section */
 		7252E02B1AF1BC1D006D0535 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		7252E0361AF1BC1E006D0535 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -372,14 +303,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		7252E0341AF1BC1E006D0535 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				7252E0401AF1BC1E006D0535 /* MarkdownTextViewTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		7252E0651AF1BD61006D0535 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -392,11 +315,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		7252E03B1AF1BC1E006D0535 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 7252E02C1AF1BC1D006D0535 /* MarkdownTextView */;
-			targetProxy = 7252E03A1AF1BC1E006D0535 /* PBXContainerItemProxy */;
-		};
 		7252E08C1AF1BD82006D0535 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 7252E02C1AF1BC1D006D0535 /* MarkdownTextView */;
@@ -428,6 +346,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -487,6 +406,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -552,7 +472,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -572,43 +492,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
-				SWIFT_VERSION = 4.2;
-			};
-			name = Release;
-		};
-		7252E0471AF1BC1E006D0535 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = MarkdownTextViewTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.indragie.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.2;
-			};
-			name = Debug;
-		};
-		7252E0481AF1BC1E006D0535 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = MarkdownTextViewTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.indragie.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -657,15 +541,6 @@
 			buildConfigurations = (
 				7252E0441AF1BC1E006D0535 /* Debug */,
 				7252E0451AF1BC1E006D0535 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		7252E0461AF1BC1E006D0535 /* Build configuration list for PBXNativeTarget "MarkdownTextViewTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				7252E0471AF1BC1E006D0535 /* Debug */,
-				7252E0481AF1BC1E006D0535 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
